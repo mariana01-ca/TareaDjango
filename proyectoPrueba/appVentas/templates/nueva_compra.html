@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+
+usuario: {{ user.username }}
+
+{% if user.username == 'tecnico01' %}
+    <h1>NUEVA COMPRA</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form }}
+        <br>
+        <button type="submit">Guardar</button>
+    </form>
+
+    <a href="{% url 'listar_compras' %}">Volver</a>
+
+{% else %}
+    <h2>Usted no tiene permiso de ingresar</h2>
+{% endif %}
+
+{% endblock content %}

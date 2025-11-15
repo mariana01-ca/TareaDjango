@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+usuario: {{user.username}} 
+<H1>Registrar tienda</h1>
+    <form action="" , method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit">Registrar</button>
+        <a href="{% url 'listar_tiendas'%}">
+            <button type="reset">Cancelar</button>
+        </a>
+    </form> 
+{% endblock content %}

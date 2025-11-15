@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block content %}
+usuario: {{user.username}} 
+<h1>LISTADO DE TIENDAS</h1>
+    <table border="1">
+        <tr>
+            <th width=20px>ID</th>
+            <th width=120px>Nombre</th>
+            <th width=160px>Dirección</th>
+        </tr>
+    </table>
+    {% for tienda in tiendas %}
+       <table border="1">
+           <tr>
+              <td width=20px>{{ tienda.id_tienda }}</td>
+              <td width=120px>{{ tienda.nombre }}</td>
+              <td width=160px>{{ tienda.direccion }}</td>
+              {% if user.username == 'tecnico01' %}
+              <h2>Usted no tiene permiso de eliminar</h2>
+              {% else %}
+              <a href="{% url 'eliminar_tienda' tienda.id_tienda%}">ELIMINAR </a>
+            {% endif %}
+              
+            <a href="{% url 'actualizar_tienda' tienda.id_tienda%}">MODIFICAR </a>
+           </tr>
+       </table>
+    {% endfor %}
+    {% if user.username == 'tecnico01' %}
+    <h2>Usted no tiene permiso de crear</h2>
+       {% else %}
+            <a href="{% url 'crear_tienda'%}">Nueva Tienda</a>
+       {% endif %}
+    
+{% endblock content %}

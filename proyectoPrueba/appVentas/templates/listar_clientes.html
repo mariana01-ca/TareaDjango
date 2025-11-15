@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+
+usuario: {{user.username}} 
+
+   <h1>LISTADO DE CLIENTES</h1>
+   <ul>
+       {% for cliente in clientes %}
+            <li>{{cliente.id_cliente}} - {{cliente.nombre}} - {{cliente.email}}</li>
+            {% if user.username == 'tecnico01' %}
+            <h2>Usted no tiene permiso de eliminar</h2>
+            {% else %}
+            <a href="{% url 'eliminar_cliente' cliente.id_cliente%}">ELIMINAR </a>
+            {% endif %}
+            <a href="{% url 'actualizar_cliente' cliente.id_cliente%}">MODIFICAR </a>
+            
+       {% endfor %}
+       {% if user.username == 'tecnico01' %}
+       <h2>Usted no tiene permiso de crear</h2>
+       {% else %}
+            <a href="{% url 'crear_cliente'%}">Nuevo Cliente</a>
+       {% endif %}
+   </ul>
+   
+{% endblock content %}

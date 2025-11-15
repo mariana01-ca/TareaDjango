@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% load static %}
+usuario: {{user.username}} 
+<div id="landing">
+  <h1>Proyecto Prueba</h1>
+  <img src="{% static 'img/logo.png' %}" alt="Portada" style="max-width:400px;">
+  <p>Bienvenido al sistema de ventas.</p>
+
+  <!-- Botón para reproducir sonido -->
+  <audio id="audioclick" src="{% static 'audio/audioclick.mp3' %}"></audio>
+  <button onclick="document.getElementById('audioclick').play()">Escuchar bienvenida</button>
+
+  <!-- Enlaces -->
+  <p>
+    <a href="{% url 'listar_clientes' %}">Clientes</a> |
+    <a href="{% url 'listar_tiendas' %}">Tiendas</a> |
+    <a href="{% url 'listar_compras' %}">Compras</a>
+  </p>
+</div>
+<a href="{% url 'logout' %}">Cerrar sesión</a>
+{% endblock content%}
